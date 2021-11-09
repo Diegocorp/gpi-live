@@ -2,9 +2,9 @@ import React from "react";
 import { useForm } from "@formspree/react";
 
 function SuggestionsForm() {
-  const [state, handleSubmit] = useForm("xwkalorj");
+  const [state, handleSubmit] = useForm("myylqryk");
   if (state.succeeded) {
-    return <p>Gracias por su comentario!</p>;
+    return <p className="ml-3">Gracias por su comentario!</p>;
   }
   return (
     <form onSubmit={handleSubmit}>
