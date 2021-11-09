@@ -1,0 +1,21 @@
+#iconSup{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
+#collapseBtn{
+  background-color: rgba(255,255,255,.20);
+}
+
+#collapseBtn:hover{
+  background-color: rgba(255,255,255,.25);
+}
+
+#arrowIcon{
+  color: rgba(255,255,255,.55) !important;
+}
+
+#navbar-nav {
+  padding: 2vw;
+}
