@@ -47,9 +47,11 @@ const CustomDropdown = ({ logout, suggestionPage, userPage }) => {
               <div className="w-100 text-center">{userPage}</div>
             </Dropdown.Item>
           )}
-          <Dropdown.Item>
-            <div className="w-100 text-center">{suggestionPage}</div>
-          </Dropdown.Item>
+          {guest ? null : (
+            <Dropdown.Item>
+              <div className="w-100 text-center">{suggestionPage}</div>
+            </Dropdown.Item>
+          )}
           <Dropdown.Item>
             <div className="w-100 text-center">{logout}</div>
           </Dropdown.Item>

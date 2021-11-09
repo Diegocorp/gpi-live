@@ -87,7 +87,7 @@ const AddStudent = ({
               id="studentName"
               value={textFields.studentName}
               onChange={handleType}
-              required={true}
+              required={index === 0 ? true : false}
               className="border rounded form-control studentName"
               type="text"
               placeholder="Nombre del alumno"
@@ -106,7 +106,7 @@ const AddStudent = ({
               id="studentID"
               value={textFields.studentID}
               onChange={handleType}
-              required={true}
+              required={index === 0 ? true : false}
               className="form-control studentId"
               type="text"
               placeholder="Número de control"

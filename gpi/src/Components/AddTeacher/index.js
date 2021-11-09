@@ -100,7 +100,7 @@ const AddTeacher = ({
               id="nameTeacher"
               value={textFields.nameTeacher}
               onChange={handleType}
-              required={true}
+              required={index === 0 ? true : false}
               className="border rounded form-control teacherName"
               type="text"
               placeholder="Nombre del maestro"
@@ -119,7 +119,7 @@ const AddTeacher = ({
               pattern="[0-9]+"
               value={textFields.idTeacher}
               onChange={handleType}
-              required={true}
+              required={index === 0 ? true : false}
               className="form-control teacherId"
               type="text"
               placeholder="Número de empleado"
@@ -138,7 +138,7 @@ const AddTeacher = ({
               id="subject"
               value={textFields.subject}
               onChange={handleType}
-              required={true}
+              required={index === 0 ? true : false}
               className="border rounded form-control teacherSubject"
               type="text"
               placeholder="Materia"

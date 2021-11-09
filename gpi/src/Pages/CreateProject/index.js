@@ -102,7 +102,7 @@ const CreateProject = ({ title, edit }) => {
         creatorID: user.employeeNumber,
       }));
     }
-  }, [guest, user]);
+  }, [guest, user, project]);
 
   const handleType = (e) => {
     const { id, value } = e.target;
