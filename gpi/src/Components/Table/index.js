@@ -73,7 +73,7 @@ function CreatorFilter({ setToggler, toggle }) {
                 toggle ? "cerrar" : "text-slide"
               }`}
             >
-              <span className="text-slide">Mis Proyectos</span>
+              <span className="text-slide w-100">Mis Proyectos</span>
               <div>
                 <span className="line line1 bg-primary"></span>
                 <span className="line line3 bg-primary"></span>

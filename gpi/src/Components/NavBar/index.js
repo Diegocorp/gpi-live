@@ -35,19 +35,11 @@ const NavBar = () => {
               icon={faTachometerAlt}
               title="Estadisticas"
             />
-            <NavItem
-              guest={guest ? true : false}
-              id="me"
-              icon={faUser}
-              title="Perfil"
-            />
+            {guest ? null : <NavItem id="me" icon={faUser} title="Perfil" />}
             <NavItem id="projects" icon={faTable} title="Proyectos" />
-            <NavItem
-              guest={guest ? true : false}
-              id="create"
-              icon={faEdit}
-              title="Gestor de Proyectos"
-            />
+            {guest ? null : (
+              <NavItem id="create" icon={faEdit} title="Gestor de Proyectos" />
+            )}
           </ul>
         </div>
       </nav>

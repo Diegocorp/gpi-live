@@ -42,9 +42,9 @@ const NavButton = ({ hamburger }) => {
       {hamburger ? (
         isMobile ? (
           <>
-            <nav className="navbar navbar-expand-lg navbar-light m-0 p-0">
+            <nav className="navbar navbar-expand-lg navbar-light m-0 p-0 w-100">
               <Dropdown
-                className="bg-white m-0 p-0"
+                className="bg-white m-0 p-0 w-100"
                 style={{ position: "relative" }}
               >
                 <Dropdown.Toggle as={CustomToggle} className="navbar-toggler">
@@ -55,8 +55,12 @@ const NavButton = ({ hamburger }) => {
                   </div>
                 </Dropdown.Toggle>
                 <Dropdown.Menu className="rounded p-0">
-                  <Dropdown.Item>
-                    <NavItem id="statistics" title="Estadisticas" />
+                  <Dropdown.Item className="w-100 h-100">
+                    <NavItem
+                      id="statistics"
+                      className="w-100 h-100"
+                      title="Estadisticas"
+                    />
                   </Dropdown.Item>
                   {guest ? null : (
                     <Dropdown.Item>

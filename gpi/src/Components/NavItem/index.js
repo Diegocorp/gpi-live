@@ -34,7 +34,7 @@ const NavItem = (props) => {
         }
         style={
           isMobile
-            ? null
+            ? { width: "100%" }
             : page === `${props.id}`
             ? {}
             : { color: "rgba(255,255,255,.5)" }
