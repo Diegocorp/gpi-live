@@ -32,6 +32,9 @@ class ChartsPage extends React.Component {
     barChartOptions: {
       responsive: true,
       maintainAspectRatio: true,
+      legend: {
+        display: false,
+      },
       scales: {
         dataSet: [
           {
