@@ -1,6 +1,8 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "../../Utils/UserContext";
 import "./styles.css";
+import "react-notifications-component/dist/theme.css";
+import { store } from "react-notifications-component";
 import apis from "../../API";
 
 const UserPage = (props) => {
@@ -61,7 +63,19 @@ const UserPage = (props) => {
         imageURL: `${picture}#t=${performance.now()}`,
       }));
       setUser(userData);
-      alert("Los cambios se guardaron con exito!");
+      store.addNotification({
+        title: "Guardado con éxito",
+        message: "Nueva configuración de usuario guardada con éxito.",
+        type: "default",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animate__animated", "animate__fadeIn"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 3500,
+          onScreen: true,
+        },
+      });
     } catch (error) {
       alert(error);
     }
@@ -74,32 +88,6 @@ const UserPage = (props) => {
       </h2>
       <form className="needs-validation" noValidate onSubmit={handleSubmit}>
         <div className="row justify-content-md-center">
-          {/* User image */}
-          <div className="col-lg-8">
-            <div className="card shadow mb-3">
-              <div className="card-header py-3">
-                <p className="text-primary m-0 font-weight-bold">
-                  Imágen de perfil
-                </p>
-              </div>
-              <div className="card-body text-center shadow">
-                <img
-                  id="preview"
-                  className="rounded border border-dark mb-3 mt-4 img-fluid"
-                  src={user.imageURL}
-                  width="160"
-                  height="160"
-                  alt="user profile"
-                />
-                <div className="form-group mb-3">
-                  <input type="file" name="image" onChange={handleFileChange} />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* User configuration */}
-        <div className="row justify-content-md-center">
           <div className="col-lg-8">
             <div className="row ">
               <div className="col">
@@ -111,75 +99,105 @@ const UserPage = (props) => {
                   </div>
                   <div className="card-body">
                     <div className="form-row">
-                      <div className="col-xs-12 col-md-6">
-                        <div className="form-group">
-                          <label htmlFor="username">
-                            <strong>Nombre de Usuario</strong>
-                          </label>
-                          <input
-                            required={true}
-                            value={userData.userName}
-                            id="userName"
-                            onChange={handleChange}
-                            className="form-control"
-                            type="text"
-                            placeholder="Nombre de Usuario"
-                            name="username"
-                          />
+                      <div className="row col-12 col-md-6">
+                        <div className="col-12">
+                          <div className="form-group">
+                            <label htmlFor="username">
+                              <strong>Nombre de Usuario</strong>
+                            </label>
+                            <input
+                              required={true}
+                              value={userData.userName}
+                              id="userName"
+                              onChange={handleChange}
+                              className="form-control"
+                              type="text"
+                              placeholder="Nombre de Usuario"
+                              name="username"
+                            />
+                          </div>
+                        </div>
+                        <div className="col-12">
+                          <div className="form-group">
+                            <label htmlFor="email">
+                              <strong>Correo Electronico</strong>
+                            </label>
+                            <input
+                              required={true}
+                              value={userData.email}
+                              id="email"
+                              onChange={handleChange}
+                              className="form-control"
+                              type="email"
+                              placeholder="Correo Electronico"
+                              name="email"
+                            />
+                          </div>
+                        </div>
+                        <div className="col-12">
+                          <div className="form-group">
+                            <label htmlFor="first_name">
+                              <strong>Nombre(s)</strong>
+                            </label>
+                            <input
+                              required={true}
+                              value={userData.firstName}
+                              id="firstName"
+                              onChange={handleChange}
+                              className="form-control"
+                              type="text"
+                              placeholder="Nombre(s)"
+                              name="first_name"
+                            />
+                          </div>
+                        </div>
+                        <div className="col-12">
+                          <div className="form-group">
+                            <label htmlFor="last_name">
+                              <strong>Apellido(s)</strong>
+                            </label>
+                            <input
+                              required={true}
+                              value={userData.lastName}
+                              id="lastName"
+                              onChange={handleChange}
+                              className="form-control"
+                              type="text"
+                              placeholder="Apellido(s)"
+                              name="last_name"
+                            />
+                          </div>
                         </div>
                       </div>
-                      <div className="col-xs-12 col-md-6">
-                        <div className="form-group">
-                          <label htmlFor="email">
-                            <strong>Correo Electronico</strong>
-                          </label>
-                          <input
-                            required={true}
-                            value={userData.email}
-                            id="email"
-                            onChange={handleChange}
-                            className="form-control"
-                            type="email"
-                            placeholder="Correo Electronico"
-                            name="email"
-                          />
+                      <div className="row col-12 col-md-6 m-md-2">
+                        {/* User configuration */}
+                        <div className="col-12 m-md-3">
+                          <div className="card shadow justify-content-md-center">
+                            <div className="card-header py-3">
+                              <p className="text-primary m-0 font-weight-bold">
+                                Imágen de perfil
+                              </p>
+                            </div>
+                            <div className="card-body text-center shadow">
+                              <img
+                                id="preview"
+                                className="rounded border border-dark mb-3 mt-4 img-fluid"
+                                src={user.imageURL}
+                                width="160"
+                                height="160"
+                                alt="user profile"
+                              />
+                              <div className="form-group mb-3">
+                                <input
+                                  type="file"
+                                  name="image"
+                                  onChange={handleFileChange}
+                                />
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                    <div className="form-row">
-                      <div className="col-xs-12 col-md-6">
-                        <div className="form-group">
-                          <label htmlFor="first_name">
-                            <strong>Nombre(s)</strong>
-                          </label>
-                          <input
-                            required={true}
-                            value={userData.firstName}
-                            id="firstName"
-                            onChange={handleChange}
-                            className="form-control"
-                            type="text"
-                            placeholder="Nombre(s)"
-                            name="first_name"
-                          />
-                        </div>
-                      </div>
-                      <div className="col-xs-12 col-md-6">
-                        <div className="form-group">
-                          <label htmlFor="last_name">
-                            <strong>Apellido(s)</strong>
-                          </label>
-                          <input
-                            required={true}
-                            value={userData.lastName}
-                            id="lastName"
-                            onChange={handleChange}
-                            className="form-control"
-                            type="text"
-                            placeholder="Apellido(s)"
-                            name="last_name"
-                          />
-                        </div>
+                        {/* User configuration */}
                       </div>
                     </div>
                   </div>
