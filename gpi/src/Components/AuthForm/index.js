@@ -19,7 +19,8 @@ const AuthForm = () => {
     }));
   };
 
-  const handleSubmitClick = async () => {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     try {
       const payload = {
         email: state.email,
@@ -49,7 +50,7 @@ const AuthForm = () => {
         <div className="text-center">
           <h4 className="text-dark mb-4">¡Bienvenido!</h4>
         </div>
-        <form className="user">
+        <form className="user" onSubmit={handleSubmit}>
           <div className="form-group">
             <input
               className="form-control form-control-user rounded-pill py-2"
@@ -92,9 +93,8 @@ const AuthForm = () => {
           </div>
           <button
             id="login"
-            type="button"
+            type="submit"
             className="btn btn-primary btn-block text-white btn-user rounded-pill py-2"
-            onClick={handleSubmitClick}
           >
             Entrar
           </button>
