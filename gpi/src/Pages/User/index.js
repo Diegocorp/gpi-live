@@ -69,9 +69,9 @@ const UserPage = (props) => {
 
   return (
     <div className="container-fluid text-left">
-      <h3 className="text-dark">
-        <strong>Perfil</strong>{" "}
-      </h3>
+      <h2 className="text-dark">
+        <strong>Perfil</strong>
+      </h2>
       <form className="needs-validation" noValidate onSubmit={handleSubmit}>
         <div className="row justify-content-md-center">
           {/* User image */}

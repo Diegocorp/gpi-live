@@ -304,12 +304,11 @@ const CreateProject = ({ title, edit }) => {
   };
 
   return (
-    <div id="create-container" className="w-100 text-left">
-      <div className="container-fluid"></div>
+    <div id="create-container" className="w-100 container-fluid text-left">
       <div className="d-sm-flex justify-content-between align-items-center">
-        <h3 className="text-dark mb-0 pl-3">
-          {title ? title : "Gestión de Proyecto"}
-        </h3>
+        <h2>
+          <strong>{title ? title : "Gestión de Proyecto"}</strong>
+        </h2>
       </div>
       <div className="row" />
       <form id="projectID" className={`needs-validation`} onSubmit={onSubmit}>

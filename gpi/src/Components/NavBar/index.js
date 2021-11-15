@@ -9,6 +9,7 @@ import {
   faEdit,
 } from "@fortawesome/free-solid-svg-icons";
 import { GuestContext } from "../../Utils/GuestContext";
+import tecLogo from "../../Assets/img/tecnm-1.png";
 
 const NavBar = () => {
   const { guest } = useContext(GuestContext);
@@ -29,7 +30,7 @@ const NavBar = () => {
           className="container-fluid d-flex h-100 flex-column p-0 collapse navbar-collapse h-100"
           id="navbarSupportedContent"
         >
-          <ul className="nav navbar-nav h-75 text-left pl-0 mt-3 justify-content-around d-flex flex-column">
+          <ul className="nav navbar-nav h-100 text-left pl-0 mt-3 justify-content-around d-flex flex-column">
             <NavItem
               id="statistics"
               icon={faTachometerAlt}
@@ -43,6 +44,17 @@ const NavBar = () => {
           </ul>
         </div>
       </nav>
+      <span>
+        <img
+          src={tecLogo}
+          id="tecLogo"
+          alt="TecNM"
+          className="w-75 h-75 rounded-circle"
+        />
+        <h3 className="text-white">
+          <strong>GPI</strong>
+        </h3>
+      </span>
     </div>
   );
 };

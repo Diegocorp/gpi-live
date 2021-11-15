@@ -1,21 +1,20 @@
-#iconSup{
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
+#collapseBtn {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
-#collapseBtn{
-  background-color: rgba(255,255,255,.20);
+#collapseBtn:hover {
+  background-color: rgba(255, 255, 255, 0.25);
 }
 
-#collapseBtn:hover{
-  background-color: rgba(255,255,255,.25);
-}
-
-#arrowIcon{
-  color: rgba(255,255,255,.55) !important;
+#arrowIcon {
+  color: rgba(255, 255, 255, 0.55) !important;
 }
 
 #navbar-nav {
   padding: 2vw;
+}
+
+#tecLogo {
+  filter: invert(99%) sepia(5%) saturate(109%) hue-rotate(220deg)
+    brightness(115%) contrast(100%);
 }

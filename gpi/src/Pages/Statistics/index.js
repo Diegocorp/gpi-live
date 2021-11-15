@@ -66,7 +66,9 @@ function Statistics() {
   return (
     <Container fluid>
       <div className="d-sm-flex justify-content-between align-items-center mb-4">
-        <h3 className="font-weight-bold mb-0">Estadisticas</h3>
+        <h2>
+          <strong>Estadísticas</strong>
+        </h2>
       </div>
       <Row>
         <Col className="col-md-6 col-xl-3 mb-4">

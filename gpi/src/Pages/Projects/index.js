@@ -33,13 +33,20 @@ const Projects = () => {
       <div className="w-100 h-100">
         <div className="container-fluid h-100 w-100">
           {loading ? (
-            <Spinner animation="border" role="status" />
+            <div className="h-100 w-100 d-flex justify-content-center align-items-center">
+              <Spinner animation="border" role="status" />
+            </div>
           ) : (
-            <CustomTable
-              projectsData={projectsData}
-              setToggleUserProjects={setToggleUserProjects}
-              toggleUserProjects={toggleUserProjects}
-            />
+            <div className="text-left h-100">
+              <h2 className="text-dark">
+                <strong>Proyectos</strong>
+              </h2>
+              <CustomTable
+                projectsData={projectsData}
+                setToggleUserProjects={setToggleUserProjects}
+                toggleUserProjects={toggleUserProjects}
+              />
+            </div>
           )}
         </div>
       </div>

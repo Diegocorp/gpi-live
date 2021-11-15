@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useParams } from "react-router-dom";
 import { ProjectContext } from "../../Utils/ProjectContext";
 
-const NavItem = (props) => {
+const NavItem = ({ guest, id, icon, title, extraStyles, children }) => {
   let { userID, page } = useParams();
   const { setProject } = useContext(ProjectContext);
   const isMobile = useMediaQuery({ query: `(max-width: 1200px)` });
@@ -15,36 +15,34 @@ const NavItem = (props) => {
 
   return (
     <li
-      className="nav-item d-flex flex-column align-items-center justify-content-center h6 "
+      className={`nav-item d-flex flex-column align-items-center justify-content-center h6 ${
+        extraStyles ? extraStyles : ""
+      }`}
       role="presentation"
-      style={props.guest ? { display: "none" } : null}
+      style={guest ? { display: "none" } : null}
       onClick={() => {
         setProject({});
       }}
     >
       <Link
-        id={props.id}
+        id={id}
         className={
           Nav +
-          (isMobile
-            ? ""
-            : page === `${props.id}`
-            ? styleSelected
-            : styleUnSelected)
+          (isMobile ? "" : page === `${id}` ? styleSelected : styleUnSelected)
         }
         style={
           isMobile
             ? { width: "100%" }
-            : page === `${props.id}`
+            : page === `${id}`
             ? {}
             : { color: "rgba(255,255,255,.5)" }
         }
-        to={!userID ? `/guest/${props.id}` : `/user/${userID}/${props.id}`}
+        to={!userID ? `/guest/${id}` : `/user/${userID}/${id}`}
       >
-        {props.icon ? <FontAwesomeIcon icon={props.icon} /> : null}
-        {props.title}
+        {icon ? <FontAwesomeIcon icon={icon} /> : null}
+        {title}
       </Link>
-      {props.children}
+      {children}
     </li>
   );
 };

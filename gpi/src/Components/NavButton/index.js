@@ -36,7 +36,9 @@ const NavButton = ({ hamburger }) => {
 
   return (
     <div
-      className="text-center d-md-inline align-self-center"
+      className={`text-center d-flex align-self-center ${
+        isMobile ? "" : hamburger ? "" : " justify-content-center  w-100"
+      }`}
       onClick={onClick}
     >
       {hamburger ? (
@@ -55,24 +57,36 @@ const NavButton = ({ hamburger }) => {
                   </div>
                 </Dropdown.Toggle>
                 <Dropdown.Menu className="rounded p-0">
-                  <Dropdown.Item className="w-100 h-100">
+                  <Dropdown.Item>
                     <NavItem
                       id="statistics"
-                      className="w-100 h-100"
+                      extraStyles="w-100 h-100"
                       title="Estadisticas"
                     />
                   </Dropdown.Item>
                   {guest ? null : (
                     <Dropdown.Item>
-                      <NavItem id="me" title="Perfil" />
+                      <NavItem
+                        id="me"
+                        title="Perfil"
+                        extraStyles="w-100 h-100"
+                      />
                     </Dropdown.Item>
                   )}
                   <Dropdown.Item>
-                    <NavItem id="projects" title="Proyectos" />
+                    <NavItem
+                      id="projects"
+                      title="Proyectos"
+                      extraStyles="w-100 h-100"
+                    />
                   </Dropdown.Item>
                   {guest ? null : (
                     <Dropdown.Item>
-                      <NavItem id="create" title="Gestor de Proyectos" />
+                      <NavItem
+                        id="create"
+                        title="Gestor de Proyectos"
+                        extraStyles="w-100 h-100"
+                      />
                     </Dropdown.Item>
                   )}
                 </Dropdown.Menu>
