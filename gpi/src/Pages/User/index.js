@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { useMediaQuery } from "react-responsive";
 import { UserContext } from "../../Utils/UserContext";
 import "./styles.css";
 import apis from "../../API";
@@ -10,6 +11,7 @@ const UserPage = (props) => {
   const [file, setFile] = useState({
     file: null,
   });
+  const isMobile = useMediaQuery({ query: `(max-width: 1200px)` });
 
   //Gestionar el evento de los cambios a los datos de usuario
   const handleChange = (e) => {
@@ -68,10 +70,13 @@ const UserPage = (props) => {
   };
 
   return (
-    <div className="container-fluid text-left">
-      <h2 className="text-dark">
-        <strong>Perfil</strong>
-      </h2>
+    <div className={`container-fluid  ${isMobile ? "" : "text-left"}`}>
+      <div className="d-sm-flex justify-content-between align-items-center mb-4">
+        <h2 className="text-dark">
+          <strong>Perfil</strong>
+        </h2>
+      </div>
+
       <form className="needs-validation" noValidate onSubmit={handleSubmit}>
         <div className="row justify-content-md-center">
           {/* User image */}

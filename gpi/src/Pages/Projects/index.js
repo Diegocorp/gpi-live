@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { useMediaQuery } from "react-responsive";
 import CustomTable from "../../Components/Table";
 import apis from "../../API";
 import Spinner from "react-bootstrap/Spinner";
@@ -10,6 +11,7 @@ const Projects = () => {
   const [toggleUserProjects, setToggleUserProjects] = useState(false);
   const { user } = useContext(UserContext);
   const [loading, setLoading] = useState(true);
+  const isMobile = useMediaQuery({ query: `(max-width: 570px)` });
 
   useEffect(() => {
     async function fetchData() {
@@ -31,13 +33,17 @@ const Projects = () => {
   return (
     <div className=" w-100 h-100">
       <div className="w-100 h-100">
-        <div className="container-fluid h-100 w-100">
+        <div
+          className={`container-fluid w-100 h-100  ${
+            isMobile ? "" : "text-left"
+          }`}
+        >
           {loading ? (
             <div className="h-100 w-100 d-flex justify-content-center align-items-center">
               <Spinner animation="border" role="status" />
             </div>
           ) : (
-            <div className="text-left h-100">
+            <div className="d-block justify-content-between align-items-center mb-4">
               <h2 className="text-dark">
                 <strong>Proyectos</strong>
               </h2>

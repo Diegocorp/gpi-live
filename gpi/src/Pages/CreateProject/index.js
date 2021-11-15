@@ -304,8 +304,8 @@ const CreateProject = ({ title, edit }) => {
   };
 
   return (
-    <div id="create-container" className="w-100 container-fluid text-left">
-      <div className="d-sm-flex justify-content-between align-items-center">
+    <div className={`container-fluid  ${isMobile ? "" : "text-left"}`}>
+      <div className="d-sm-flex justify-content-between align-items-center mb-4">
         <h2>
           <strong>{title ? title : "Gestión de Proyecto"}</strong>
         </h2>

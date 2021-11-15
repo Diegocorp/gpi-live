@@ -8,6 +8,7 @@ const NavItem = ({ guest, id, icon, title, extraStyles, children }) => {
   let { userID, page } = useParams();
   const { setProject } = useContext(ProjectContext);
   const isMobile = useMediaQuery({ query: `(max-width: 1200px)` });
+  const isMedium = useMediaQuery({ query: `(max-width: 1600px)` });
   const styleSelected = "nav-link active font-weight-bold ";
   const styleUnSelected = "nav-link";
   const Nav =
@@ -34,13 +35,26 @@ const NavItem = ({ guest, id, icon, title, extraStyles, children }) => {
           isMobile
             ? { width: "100%" }
             : page === `${id}`
-            ? {}
-            : { color: "rgba(255,255,255,.5)" }
+            ? { padding: "0px 5px" }
+            : { color: "rgba(255,255,255,.5)", padding: "0px 5px" }
         }
         to={!userID ? `/guest/${id}` : `/user/${userID}/${id}`}
       >
-        {icon ? <FontAwesomeIcon icon={icon} /> : null}
-        {title}
+        {icon ? (
+          <FontAwesomeIcon
+            icon={icon}
+            style={{ width: "40%", height: "40%", maxHeight: "40px" }}
+          />
+        ) : null}
+        {isMedium ? (
+          <h6 style={page === `${id}` ? { fontWeight: "bold" } : null}>
+            {title}
+          </h6>
+        ) : (
+          <h5 style={page === `${id}` ? { fontWeight: "bold" } : null}>
+            {title}
+          </h5>
+        )}
       </Link>
       {children}
     </li>

@@ -3,10 +3,10 @@ import "./styles.css";
 import NavItem from "../NavItem";
 import NavButton from "../NavButton";
 import {
-  faTachometerAlt,
   faUser,
   faTable,
-  faEdit,
+  faFileAlt,
+  faChartBar,
 } from "@fortawesome/free-solid-svg-icons";
 import { GuestContext } from "../../Utils/GuestContext";
 import tecLogo from "../../Assets/img/tecnm-1.png";
@@ -16,10 +16,11 @@ const NavBar = () => {
 
   return (
     <div className={`d-flex flex-column h-100`} id="Navbar__Container">
+      {/* Open/Close NavBar Button */}
       <span className="mt-2 w-100 justify-content-center d-flex z-depth-3 position-relative">
         <NavButton />
       </span>
-
+      {/* Nav List Items */}
       <nav
         id="NavBar"
         className={
@@ -31,19 +32,20 @@ const NavBar = () => {
           id="navbarSupportedContent"
         >
           <ul className="nav navbar-nav h-100 text-left pl-0 mt-3 justify-content-around d-flex flex-column">
-            <NavItem
-              id="statistics"
-              icon={faTachometerAlt}
-              title="Estadisticas"
-            />
+            <NavItem id="statistics" icon={faChartBar} title="Estadisticas" />
             {guest ? null : <NavItem id="me" icon={faUser} title="Perfil" />}
             <NavItem id="projects" icon={faTable} title="Proyectos" />
             {guest ? null : (
-              <NavItem id="create" icon={faEdit} title="Gestor de Proyectos" />
+              <NavItem
+                id="create"
+                icon={faFileAlt}
+                title="Gestor de Proyectos"
+              />
             )}
           </ul>
         </div>
       </nav>
+      {/* Logo */}
       <span>
         <img
           src={tecLogo}
