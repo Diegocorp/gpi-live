@@ -71,10 +71,13 @@ function Statistics() {
         </h2>
       </div>
       <Row>
-        <Col className="col-md-6 col-xl-3 mb-4">
+        <Col className="col-12 col-md-3 mb-4">
           <Card className="card shadow border-left-primary py-2">
-            <Card className="card-body">
-              <Row className="align-items-center no-gutters">
+            <Card className="card-body border-0">
+              <Row className="align-items-center">
+                <Col className="col-auto">
+                  <i className="fas fa-calendar-alt fa-2x text-gray-300 p-3 text-primary"></i>
+                </Col>
                 <Col className="mr-2">
                   <div className="text-uppercase text-primary font-weight-bold text-xs mb-1">
                     <span>Proyectos Implementados</span>
@@ -85,17 +88,17 @@ function Statistics() {
                     </span>
                   </div>
                 </Col>
-                <Col className="col-auto">
-                  <i className="fas fa-calendar fa-2x text-gray-300"></i>
-                </Col>
               </Row>
             </Card>
           </Card>
         </Col>
-        <Col className="col-md-6 col-xl-3 mb-4">
+        <Col className="col-12 col-md-3 mb-4">
           <Card className="shadow border-left-success py-2">
-            <Card className="card-body">
+            <Card className="card-body border-0">
               <Row className="align-items-center no-gutters">
+                <Col className="col-auto">
+                  <i className="fas fa-dollar-sign fa-2x text-gray-300 p-3 text-success"></i>
+                </Col>
                 <Col className=" mr-2">
                   <div className="text-uppercase text-success font-weight-bold text-xs mb-1">
                     <span>Proyectos Finalizados</span>
@@ -104,17 +107,17 @@ function Statistics() {
                     <span id="spanFinish">{projectCounter["finish"]}</span>
                   </div>
                 </Col>
-                <Col className="col-auto">
-                  <i className="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                </Col>
               </Row>
             </Card>
           </Card>
         </Col>
-        <Col className="col-md-6 col-xl-3 mb-4">
+        <Col className="col-12 col-md-3 mb-4">
           <Card className="shadow border-left-info py-2">
-            <Card className="card-body">
+            <Card className="card-body border-0">
               <Row className="row align-items-center no-gutters">
+                <Col className="col-auto">
+                  <i className="fas fa-tools fa-2x text-gray-300 p-3 text-info"></i>
+                </Col>
                 <Col className="mr-2">
                   <div className="text-uppercase text-info font-weight-bold text-xs mb-1">
                     <span>Proyectos en desarrollo</span>
@@ -123,17 +126,17 @@ function Statistics() {
                     <span id="spanDevelop">{projectCounter["develop"]}</span>
                   </div>
                 </Col>
-                <Col className="col-auto">
-                  <i className="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                </Col>
               </Row>
             </Card>
           </Card>
         </Col>
-        <Col className="col-md-6 col-xl-3 mb-4">
+        <Col className="col-12 col-md-3 mb-4">
           <Card className="shadow border-left-info py-2">
-            <Card className="card-body">
+            <Card className="card-body border-0">
               <Row className="row align-items-center no-gutters">
+                <Col className="col-auto">
+                  <i className="fas fa-times-circle fa-2x text-gray-300 p-3 text-warning"></i>
+                </Col>
                 <Col className="mr-2">
                   <div className="text-uppercase text-warning font-weight-bold text-xs mb-1">
                     <span>Proyectos Cancelados</span>
@@ -142,9 +145,6 @@ function Statistics() {
                     <span id="spanCancel">{projectCounter["cancel"]}</span>
                   </div>
                 </Col>
-                <Col className="col-auto">
-                  <i className="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                </Col>
               </Row>
             </Card>
           </Card>
@@ -152,7 +152,7 @@ function Statistics() {
       </Row>
       <Row>
         {/* BarChart */}
-        <Col className="d-none d-sm-block col-lg-7 col-xl-7">
+        <Col className=" col-lg-6 col-xl-6">
           <Card className="shadow mb-4">
             <Card className="card-header d-flex justify-content-between align-items-center">
               <h6 className="text-primary font-weight-bold m-0">
@@ -166,13 +166,14 @@ function Statistics() {
                 <BarChart
                   projectsData={projectsData}
                   projectCounter={projectCounter}
+                  style="min-height:250px"
                 />
               )}
             </Card>
           </Card>
         </Col>
         {/* DoughnutChart */}
-        <Col className="d-none d-sm-block col-lg-5 col-xl-5">
+        <Col className=" col-lg-6 col-xl-6">
           <Card className="card shadow mb-4">
             <Card className="card-header d-flex justify-content-between align-items-center">
               <h6 className="text-primary font-weight-bold m-0">
