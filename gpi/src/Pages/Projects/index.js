@@ -44,7 +44,7 @@ const Projects = () => {
             </div>
           ) : (
             <div className="d-block justify-content-between align-items-center mb-4">
-              <h2 className="text-dark">
+              <h2 className="text-dark mb-3">
                 <strong>Proyectos</strong>
               </h2>
               <CustomTable

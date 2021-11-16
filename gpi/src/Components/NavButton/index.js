@@ -106,7 +106,7 @@ const NavButton = ({ hamburger }) => {
           id="collapseBtn"
           className="btn btn-block rounded-circle border-0 mt-2"
         >
-          <span className="nav-link p-0 m-0">
+          <span className="nav-link p-0 m-1">
             <FontAwesomeIcon id="arrowIcon" icon={faAngleLeft} />
           </span>
         </div>
