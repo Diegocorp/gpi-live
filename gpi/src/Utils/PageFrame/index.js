@@ -7,6 +7,7 @@ import Statistics from "../../Pages/Statistics";
 import Suggestions from "../../Pages/Suggestions";
 import Projects from "../../Pages/Projects";
 import Project from "../../Pages/Project";
+import CreateResidencyProject from "../../Pages/CreateResidencyProject";
 import CreateProject from "../../Pages/CreateProject";
 import "./styles.css";
 import { Switch, Route } from "react-router-dom";
@@ -56,6 +57,9 @@ const PageFrame = () => {
                 </Route>
                 <Route exact path={`/user/:userID/projects`}>
                   <Projects />
+                </Route>
+                <Route path={`/user/:userID/createResidencyProject`}>
+                  <CreateResidencyProject />
                 </Route>
                 <Route path={`/user/:userID/create`}>
                   <CreateProject />
