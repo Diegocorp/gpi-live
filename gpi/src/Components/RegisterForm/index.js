@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { Link, withRouter, useHistory } from "react-router-dom";
+import "react-notifications-component/dist/theme.css";
+import { store } from "react-notifications-component";
 import apis from "../../API";
 
 const RegisterForm = (props) => {
+  let history = useHistory();
   const [state, setState] = useState({
     userName: "",
     email: "",
@@ -36,7 +39,41 @@ const RegisterForm = (props) => {
       };
       // Search for token
       console.log(payload);
-      apis.createUser(payload);
+      apis
+        .createUser(payload)
+        .then(() => {
+          history.push(`/login`);
+          store.addNotification({
+            title: "Cuenta creada",
+            message: "La cuenta de usuario ha sido creada con exito",
+            type: "default",
+            insert: "top",
+            container: "top-right",
+            animationIn: ["animate__animated", "animate__fadeIn"],
+            animationOut: ["animate__animated", "animate__fadeOut"],
+            dismiss: {
+              duration: 3500,
+              onScreen: true,
+            },
+          });
+        })
+        .catch((error) => {
+          // handle error
+          console.log(error);
+          store.addNotification({
+            title: "Usuario no creado",
+            message: "Error al crear el nuevo usuario",
+            type: "danger",
+            insert: "top",
+            container: "top-right",
+            animationIn: ["animate__animated", "animate__fadeIn"],
+            animationOut: ["animate__animated", "animate__fadeOut"],
+            dismiss: {
+              duration: 3500,
+              onScreen: true,
+            },
+          });
+        });
     } catch (error) {
       alert("Error en el ingreso de los datos de usuario...");
     }
@@ -48,7 +85,7 @@ const RegisterForm = (props) => {
         <div className="text-center">
           <h4 className="text-dark mb-4">Registro</h4>
         </div>
-        <form className="needs-validation" noValidate>
+        <form className={`needs-validation`} noValidate>
           <div className="form-group">
             <input
               required={true}
@@ -89,16 +126,36 @@ const RegisterForm = (props) => {
           </div>
           <div className="form-group row">
             <div className="col-sm-6 mb-3 mb-sm-0">
-              <input
-                required={true}
-                className="form-control form-control-user rounded-pill"
-                type="text"
+              <select
                 id="academy"
                 value={state.academy}
                 onChange={handleClick}
                 placeholder="Academia"
-                name="first_name"
-              />
+                className="form-control form-control-user rounded-pill"
+                style={{
+                  color: "rgb(110, 112, 126)",
+                  padding: "6px 12px",
+                }}
+              >
+                <optgroup label="Academia/Departamento">
+                  <option value="Academia/Departamento">
+                    Academia/Departamento
+                  </option>
+                  <option value="Ingenieria en Sistemas Computacionales">
+                    Ingenieria en Sistemas Computacionales
+                  </option>
+                  <option value="Ingenieria Civil">Ingenieria Civil</option>
+                  <option value="Ingenieria Industrial">
+                    Ingenieria Industrial
+                  </option>
+                  <option value="Licenciatura en Administracion">
+                    Licenciatura en Administracion
+                  </option>
+                  <option value="Residencias Profesionales">
+                    Residencias Profesionales
+                  </option>
+                </optgroup>
+              </select>
             </div>
             <div className="col-sm-6">
               <input
