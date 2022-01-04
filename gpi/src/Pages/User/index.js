@@ -9,6 +9,7 @@ import apis from "../../API";
 const UserPage = (props) => {
   // obtener setUser de UserContext
   const { user, setUser } = useContext(UserContext);
+  const [enabled, setEnabled] = useState(true);
   const [userData, setUserData] = useState(user);
   const [file, setFile] = useState({
     file: null,
@@ -52,35 +53,69 @@ const UserPage = (props) => {
   //gestion del boton de subir los cambios de los datos a la base de datos
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      apis.updateUser(userData);
-      //subir imagen al bucket de s3
-      const formData = new FormData();
-      formData.append("imageName", userData.image);
-      formData.append("image", file.file);
-      apis.postFile(formData);
-      const picture = await apis.getFile({ fileName: userData.image });
-      setUserData((prev) => ({
-        ...prev,
-        imageURL: `${picture}#t=${performance.now()}`,
-      }));
-      setUser(userData);
-      store.addNotification({
-        title: "Guardado con éxito",
-        message: "Nueva configuración de usuario guardada con éxito.",
-        type: "default",
-        insert: "top",
-        container: "top-right",
-        animationIn: ["animate__animated", "animate__fadeIn"],
-        animationOut: ["animate__animated", "animate__fadeOut"],
-        dismiss: {
-          duration: 3500,
-          onScreen: true,
-        },
-      });
-    } catch (error) {
-      alert(error);
+    let editingPassword = false;
+
+    if (!enabled) {
+      const newPassword = document.getElementById("newPassword").value;
+      const repeatNewPassword =
+        document.getElementById("repeatNewPassword").value;
+      if (newPassword === repeatNewPassword) {
+        userData.password = newPassword;
+      } else {
+        store.addNotification({
+          title: "Las contraseñas no son iguales",
+          message:
+            "Las contraseñas introducidas no son iguales entre si, favor de introducirlas correctamente",
+          type: "warning",
+          insert: "top",
+          container: "top-right",
+          animationIn: ["animate__animated", "animate__fadeIn"],
+          animationOut: ["animate__animated", "animate__fadeOut"],
+          dismiss: {
+            duration: 3500,
+            onScreen: true,
+          },
+        });
+        editingPassword = true;
+      }
     }
+
+    if (editingPassword === false) {
+      try {
+        apis.updateUser(userData);
+        //subir imagen al bucket de s3
+        const formData = new FormData();
+        formData.append("imageName", userData.image);
+        formData.append("image", file.file);
+        apis.postFile(formData);
+        const picture = await apis.getFile({ fileName: userData.image });
+        setUserData((prev) => ({
+          ...prev,
+          imageURL: `${picture}#t=${performance.now()}`,
+        }));
+        setUser(userData);
+        store.addNotification({
+          title: "Guardado con éxito",
+          message: "Nueva configuración de usuario guardada con éxito.",
+          type: "default",
+          insert: "top",
+          container: "top-right",
+          animationIn: ["animate__animated", "animate__fadeIn"],
+          animationOut: ["animate__animated", "animate__fadeOut"],
+          dismiss: {
+            duration: 3500,
+            onScreen: true,
+          },
+        });
+      } catch (error) {
+        alert(error);
+      }
+    }
+  };
+
+  //enable new password div
+  const enableChangePassword = () => {
+    setEnabled(!enabled);
   };
 
   return (
@@ -91,7 +126,12 @@ const UserPage = (props) => {
         </h2>
       </div>
 
-      <form className="needs-validation" noValidate onSubmit={handleSubmit}>
+      <form
+        className="needs-validation"
+        name="userForm"
+        noValidate
+        onSubmit={handleSubmit}
+      >
         <div className="row justify-content-md-center">
           <div className="col-lg-8">
             <div className="row ">
@@ -242,17 +282,67 @@ const UserPage = (props) => {
                         </div>
                       </div>
                     </div>
-                    <div className="form-group justify-content-md-center">
-                      <button
-                        id="profileBtn"
-                        className="btn btn-primary text-capitalize font-weight-bold"
-                        type="submit"
-                      >
-                        Guardar Configuracion
-                      </button>
-                      <button className="btn text-capitalize btn-purple font-weight-bold">
+                  </div>
+
+                  <div className="card-body">
+                    <div class="form-check my-2">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="flexCheckDefault"
+                        onClick={enableChangePassword}
+                      />
+                      <label class="form-check-label" for="flexCheckDefault">
                         Cambiar contraseña
-                      </button>
+                      </label>
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="address">
+                        <strong>Nueva Contraseña</strong>
+                      </label>
+                      <input
+                        disabled={enabled}
+                        required={true}
+                        id="newPassword"
+                        onChange={handleChange}
+                        className="form-control"
+                        type="password"
+                        placeholder="Nueva Contraseña"
+                        name="newPassword"
+                      />
+                    </div>
+                    <div className="form-row">
+                      <div className="col">
+                        <div className="form-group">
+                          <label htmlFor="city">
+                            <strong>Confirmar Nueva Contraseña</strong>
+                          </label>
+                          <input
+                            disabled={enabled}
+                            required={true}
+                            id="repeatNewPassword"
+                            onChange={handleChange}
+                            className="form-control"
+                            type="password"
+                            placeholder="Confirmar nueva contraseña"
+                            name="repeatNewPassword"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="card-body">
+                    <div className="form-row">
+                      <div className="form-group justify-content-md-center">
+                        <button
+                          id="profileBtn"
+                          className="btn btn-primary text-capitalize font-weight-bold"
+                          type="submit"
+                        >
+                          Guardar Configuracion
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
