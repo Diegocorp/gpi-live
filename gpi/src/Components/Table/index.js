@@ -116,7 +116,7 @@ const CustomTable = ({
 }) => {
   const history = useHistory();
   const { setProject } = useContext(ProjectContext);
-  let { userID } = useParams();
+  let { userID, department } = useParams();
 
   useEffect(() => {}, []);
 
@@ -132,7 +132,9 @@ const CustomTable = ({
       alert(error);
     }
     history.push(
-      userID ? `/user/${userID}/project/${id}` : `/guest/project/${id}`
+      userID
+        ? `/user/${department}/${userID}/project/${id}`
+        : `/guest/project/${id}`
     );
   };
 

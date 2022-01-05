@@ -5,7 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import { ProjectContext } from "../../Utils/ProjectContext";
 
 const NavItem = ({ guest, id, icon, title, extraStyles, children }) => {
-  let { userID, page } = useParams();
+  let { department, userID, page } = useParams();
   const { setProject } = useContext(ProjectContext);
   const isMobile = useMediaQuery({ query: `(max-width: 1200px)` });
   const isMedium = useMediaQuery({ query: `(max-width: 1600px)` });
@@ -38,7 +38,7 @@ const NavItem = ({ guest, id, icon, title, extraStyles, children }) => {
             ? { padding: "0px 5px" }
             : { color: "rgba(255,255,255,.5)", padding: "0px 5px" }
         }
-        to={!userID ? `/guest/${id}` : `/user/${userID}/${id}`}
+        to={!userID ? `/guest/${id}` : `/user/${department}/${userID}/${id}`}
       >
         {icon ? (
           <FontAwesomeIcon

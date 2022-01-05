@@ -1,4 +1,5 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useContext } from "react";
+import { UserContext } from "../UserContext";
 import NavBar from "../../Components/NavBar";
 import Header from "../../Components/Header";
 import { SizeContext } from "../../Utils/SizeContext";
@@ -13,6 +14,7 @@ import "./styles.css";
 import { Switch, Route } from "react-router-dom";
 
 const PageFrame = () => {
+  const { user } = useContext(UserContext);
   const [size, setSize] = useState(false);
   const sizeValue = useMemo(() => ({ size, setSize }), [size, setSize]);
 
@@ -43,28 +45,26 @@ const PageFrame = () => {
               style={{ height: "100vh" }}
             >
               <Switch>
-                <Route path={`/user/:userID/me`}>
+                <Route path={`/user/:department/:userID/me`}>
                   <UserPage />
                 </Route>
-                <Route path={`/user/:userID/statistics`}>
+                <Route path={`/user/:department/:userID/statistics`}>
                   <Statistics />
                 </Route>
-                <Route exact path={`/user/guest#statistics`}>
-                  <Statistics />
-                </Route>
-                <Route path={`/user/:userID/suggestions`}>
+                <Route path={`/user/:department/:userID/suggestions`}>
                   <Suggestions />
                 </Route>
-                <Route exact path={`/user/:userID/projects`}>
+                <Route exact path={`/user/:department/:userID/projects`}>
                   <Projects />
                 </Route>
-                <Route path={`/user/:userID/createResidencyProject`}>
-                  <CreateResidencyProject />
+                <Route path={`/user/:department/:userID/create`}>
+                  {user.department === "residencias" ? (
+                    <CreateResidencyProject />
+                  ) : (
+                    <CreateProject />
+                  )}
                 </Route>
-                <Route path={`/user/:userID/create`}>
-                  <CreateProject />
-                </Route>
-                <Route path={`/user/:userID/project/:id`}>
+                <Route path={`/user/:department/:userID/project/:id`}>
                   <Project />
                 </Route>
                 <Route path={`/user/:userID/`}>

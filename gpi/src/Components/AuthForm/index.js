@@ -38,7 +38,9 @@ const AuthForm = () => {
       }
 
       setUser(value);
-      history.push(`/user/${value.employeeNumber}/statistics`);
+      history.push(
+        `/user/${value.department}/${value.employeeNumber}/statistics`
+      );
     } catch (error) {
       console.log(error);
     }

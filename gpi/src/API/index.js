@@ -74,7 +74,6 @@ export const getProjectsByDepartment = (payload) =>
   api
     .get(`/projects/${payload.department}`, payload)
     .then((response) => {
-      console.log(response.data);
       return response.data.data;
     })
     .catch((error) => {
