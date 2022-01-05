@@ -2,7 +2,8 @@ import axios from "axios";
 import { store } from "react-notifications-component";
 
 const api = axios.create({
-  baseURL: "https://gpi-live-zjyz3.ondigitalocean.app/",
+  // change to https://gpi-live-zjyz3.ondigitalocean.app/ for production and to localhost:1818 for development
+  baseURL: "http://localhost:1818/",
 });
 
 //User API Requests
@@ -69,6 +70,27 @@ export const getProjects = (payload) =>
       // handle error
       console.log(error);
     });
+export const getProjectsByDepartment = (payload) =>
+  api
+    .get(`/projects/${payload.department}`, payload)
+    .then((response) => {
+      console.log(response.data);
+      return response.data.data;
+    })
+    .catch((error) => {
+      // handle error
+      console.log(error);
+    });
+export const getProjectsByCreator = (payload) =>
+  api
+    .get(`/projects/${payload.department}/${payload.creatorID}`, payload)
+    .then((response) => {
+      return response.data.data;
+    })
+    .catch((error) => {
+      // handle error
+      console.log(error);
+    });
 export const getProjectById = (payload) =>
   api
     .get(`/project/${payload.id}`, payload)
@@ -102,16 +124,6 @@ export const putProject = (payload) =>
 export const deleteProject = (payload) =>
   api
     .delete(`/project/${payload.id}`, payload)
-    .then((response) => {
-      return response.data.data;
-    })
-    .catch((error) => {
-      // handle error
-      console.log(error);
-    });
-export const getProjectsByCreator = (payload) =>
-  api
-    .get(`/projects/${payload.creatorID}`, payload)
     .then((response) => {
       return response.data.data;
     })
@@ -205,6 +217,7 @@ const apis = {
   getProjects,
   getProjectById,
   getProjectsByCreator,
+  getProjectsByDepartment,
   postFile,
   getFile,
   postProject,

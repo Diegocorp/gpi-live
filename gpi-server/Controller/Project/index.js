@@ -133,6 +133,62 @@ getProjectsByCreator = async (req, res) => {
   }).catch((err) => console.log(err));
 };
 
+getProjectsByDepartment = async (req, res) => {
+  switch (req.params.department) {
+    case "academia":
+      await Project.find(
+        { objectiveProject: { $ne: "Residencias" } },
+        (err, projects) => {
+          if (err) {
+            return res.status(400).json({ success: false, error: err });
+          }
+          if (!projects.length) {
+            return res.status(404).json({
+              success: false,
+              error: "Proyectos no fueron encontrados",
+            });
+          }
+          return res.status(200).json({ success: true, data: projects });
+        }
+      ).catch((err) => console.log(err));
+      break;
+    case "residencias":
+      await Project.find(
+        { objectiveProject: "Residencias" },
+        (err, projects) => {
+          if (err) {
+            return res.status(400).json({ success: false, error: err });
+          }
+          if (!projects.length) {
+            return res.status(404).json({
+              success: false,
+              error: "Proyectos no fueron encontrados",
+            });
+          }
+          return res.status(200).json({ success: true, data: projects });
+        }
+      ).catch((err) => console.log(err));
+      break;
+    default:
+      await Project.find(
+        { objectiveProject: { $ne: "Residencias" } },
+        (err, projects) => {
+          if (err) {
+            return res.status(400).json({ success: false, error: err });
+          }
+          if (!projects.length) {
+            return res.status(404).json({
+              success: false,
+              error: "Proyectos no fueron encontrados",
+            });
+          }
+          return res.status(200).json({ success: true, data: projects });
+        }
+      ).catch((err) => console.log(err));
+      break;
+  }
+};
+
 getProjects = async (req, res) => {
   await Project.find({}, (err, projects) => {
     if (err) {
@@ -154,4 +210,5 @@ module.exports = {
   getProjectById,
   getProjects,
   getProjectsByCreator,
+  getProjectsByDepartment,
 };

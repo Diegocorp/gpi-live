@@ -17,15 +17,20 @@ const Projects = () => {
     async function fetchData() {
       toggleUserProjects
         ? await apis
-            .getProjectsByCreator({ creatorID: user.employeeNumber })
+            .getProjectsByCreator({
+              department: user.department,
+              creatorID: user.employeeNumber,
+            })
             .then((result) => {
               setLoading(false);
               setProjectsData(result);
             })
-        : await apis.getProjects().then((result) => {
-            setLoading(false);
-            setProjectsData(result);
-          });
+        : await apis
+            .getProjectsByDepartment({ department: user.department })
+            .then((result) => {
+              setLoading(false);
+              setProjectsData(result);
+            });
     }
     fetchData();
   }, [toggleUserProjects, user]);
