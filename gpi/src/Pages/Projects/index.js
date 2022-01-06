@@ -53,7 +53,7 @@ const Projects = () => {
                 <strong>Proyectos</strong>
               </h2>
               <CustomTable
-                projectsData={projectsData}
+                projectsData={projectsData ? projectsData : false}
                 setToggleUserProjects={setToggleUserProjects}
                 toggleUserProjects={toggleUserProjects}
               />
