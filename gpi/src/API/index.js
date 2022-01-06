@@ -70,9 +70,9 @@ export const getProjects = (payload) =>
       // handle error
       console.log(error);
     });
-export const getProjectsByDepartment = (payload) =>
+export const getProjectsByAcademy = (payload) =>
   api
-    .get(`/projects/${payload.department}`, payload)
+    .get(`/projects/${payload.academy}`, payload)
     .then((response) => {
       return response.data.data;
     })
@@ -82,7 +82,7 @@ export const getProjectsByDepartment = (payload) =>
     });
 export const getProjectsByCreator = (payload) =>
   api
-    .get(`/projects/${payload.department}/${payload.creatorID}`, payload)
+    .get(`/projects/${payload.academy}/${payload.creatorID}`, payload)
     .then((response) => {
       return response.data.data;
     })
@@ -216,7 +216,7 @@ const apis = {
   getProjects,
   getProjectById,
   getProjectsByCreator,
-  getProjectsByDepartment,
+  getProjectsByAcademy,
   postFile,
   getFile,
   postProject,

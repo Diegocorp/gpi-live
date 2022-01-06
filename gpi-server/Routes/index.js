@@ -12,11 +12,8 @@ router.put("/project/:id", ProjectCtrl.updateProject);
 router.delete("/project/:id", ProjectCtrl.deleteProject);
 router.get("/project/:id", ProjectCtrl.getProjectById);
 router.get("/projects", ProjectCtrl.getProjects);
-router.get("/projects/:department", ProjectCtrl.getProjectsByDepartment);
-router.get(
-  "/projects/:department/:creatorID",
-  ProjectCtrl.getProjectsByCreator
-);
+router.get("/projects/:academy", ProjectCtrl.getProjectsByAcademy);
+router.get("/projects/:academy/:creatorID", ProjectCtrl.getProjectsByCreator);
 
 //Route for users
 router.post("/users", UserCtrl.createUser);

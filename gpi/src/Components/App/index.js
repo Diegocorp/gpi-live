@@ -45,7 +45,7 @@ function App() {
                 <Route path="/login">
                   <Login />
                 </Route>
-                <PrivateRoute path={`/user/:department/:userID/:page`}>
+                <PrivateRoute path={`/user/:academy/:userID/:page`}>
                   <PageFrame />
                 </PrivateRoute>
                 <Route path="/">

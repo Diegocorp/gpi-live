@@ -18,7 +18,7 @@ const Projects = () => {
       toggleUserProjects
         ? await apis
             .getProjectsByCreator({
-              department: user.department,
+              academy: user.academy,
               creatorID: user.employeeNumber,
             })
             .then((result) => {
@@ -26,7 +26,7 @@ const Projects = () => {
               setProjectsData(result);
             })
         : await apis
-            .getProjectsByDepartment({ department: user.department })
+            .getProjectsByAcademy({ academy: user.academy })
             .then((result) => {
               setLoading(false);
               setProjectsData(result);

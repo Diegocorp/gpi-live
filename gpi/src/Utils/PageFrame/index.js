@@ -45,26 +45,26 @@ const PageFrame = () => {
               style={{ height: "100vh" }}
             >
               <Switch>
-                <Route path={`/user/:department/:userID/me`}>
+                <Route path={`/user/:academy/:userID/me`}>
                   <UserPage />
                 </Route>
-                <Route path={`/user/:department/:userID/statistics`}>
+                <Route path={`/user/:academy/:userID/statistics`}>
                   <Statistics />
                 </Route>
-                <Route path={`/user/:department/:userID/suggestions`}>
+                <Route path={`/user/:academy/:userID/suggestions`}>
                   <Suggestions />
                 </Route>
-                <Route exact path={`/user/:department/:userID/projects`}>
+                <Route exact path={`/user/:academy/:userID/projects`}>
                   <Projects />
                 </Route>
-                <Route path={`/user/:department/:userID/create`}>
-                  {user.department === "residencias" ? (
+                <Route path={`/user/:academy/:userID/create`}>
+                  {user.academy === "Residencias Profesionales" ? (
                     <CreateResidencyProject />
                   ) : (
                     <CreateProject />
                   )}
                 </Route>
-                <Route path={`/user/:department/:userID/project/:id`}>
+                <Route path={`/user/:academy/:userID/project/:id`}>
                   <Project />
                 </Route>
                 <Route path={`/user/:userID/`}>
