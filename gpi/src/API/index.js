@@ -1,4 +1,5 @@
 import axios from "axios";
+import { saveAs } from "file-saver";
 import { store } from "react-notifications-component";
 
 const api = axios.create({
@@ -207,6 +208,16 @@ export const deleteDirectory = (payload) =>
       console.log(error);
     });
 
+export const buildDocentePDF = (payload) => {
+  api
+    .post("/document/build", payload)
+    .then(() => api.get("/document/fetch", { responseType: "blob" }))
+    .then((res) => {
+      const pdfBlob = new Blob([res.data], { type: "application/pdf" });
+      saveAs(pdfBlob, "document.pdf");
+    });
+};
+
 const apis = {
   getUsers,
   createUser,
@@ -227,6 +238,7 @@ const apis = {
   downloadDocument,
   deleteDocument,
   deleteDirectory,
+  buildDocentePDF,
 };
 
 export default apis;

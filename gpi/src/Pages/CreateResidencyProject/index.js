@@ -9,7 +9,6 @@ import { useParams } from "react-router-dom";
 import "react-notifications-component/dist/theme.css";
 import { store } from "react-notifications-component";
 import { UserContext } from "../../Utils/UserContext";
-import { jsPDF } from "jspdf";
 import { GuestContext } from "../../Utils/GuestContext";
 import { ProjectContext } from "../../Utils/ProjectContext";
 
@@ -259,21 +258,6 @@ const CreateResidencyProject = ({ title, edit }) => {
       console.log(error.message);
     }
   };
-
-  function createPDF() {
-    const doc = new jsPDF();
-    doc.setFont("Helvetica", "normal", "bold");
-    doc.setFontSize(22);
-    doc.text(`${dataObject.proyectName}`, 10, 10);
-    doc.setFont("Helvetica", "normal", "normal");
-    doc.setFontSize(11);
-    doc.text(
-      `Fecha de inicio: ${dataObject.startDate} \n Fecha de finalización: ${dataObject.conclusionDate}`,
-      100,
-      10
-    );
-    doc.save(`${dataObject.proyectName}.pdf`);
-  }
 
   // Delete Project
   const deleteProject = async () => {
@@ -709,7 +693,6 @@ const CreateResidencyProject = ({ title, edit }) => {
                 <button
                   className="btn btn-outline-primary text-capitalize font-weight-bold"
                   type="button"
-                  onClick={() => createPDF()}
                 >
                   Descargar documento
                 </button>
@@ -748,7 +731,6 @@ const CreateResidencyProject = ({ title, edit }) => {
                 <button
                   className="btn btn-outline-primary text-capitalize font-weight-bold"
                   type="button"
-                  onClick={() => createPDF()}
                 >
                   Descargar documento
                 </button>

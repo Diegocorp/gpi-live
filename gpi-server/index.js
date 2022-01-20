@@ -5,7 +5,8 @@ const app = express();
 const apiPort = 1818;
 const Connection = require("./Database");
 const appRouter = require("./Routes");
-app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json());

@@ -1,6 +1,7 @@
 const express = require("express");
 const ProjectCtrl = require("../Controller/Project");
 const UserCtrl = require("../Controller/User");
+const PDFCtrl = require("../Controller/PDF");
 const User = require("../Database/Models/User");
 const AWS = require("../Controller/AWS");
 const router = express.Router();
@@ -54,5 +55,9 @@ router.post(
 router.get("/upload/projects/:id/:fileName", AWS.getDocument);
 router.delete("/upload/projects/:id/:fileName", AWS.deleteDocument);
 router.delete("/upload/projects/:id", AWS.deleteDirectory);
+
+//PDF Backend routes. Build and fetch
+router.post("/document/build", PDFCtrl.buildDocentePDF);
+router.get("/document/fetch", PDFCtrl.fetchDocentePDF);
 
 module.exports = router;
