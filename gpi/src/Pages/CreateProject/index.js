@@ -128,7 +128,7 @@ const CreateProject = ({ title, edit }) => {
   }
 
   const downloadPDF = async () => {
-    const payload = {};
+    const payload = { dataObject };
     apis.buildDocentePDF(payload);
   };
 

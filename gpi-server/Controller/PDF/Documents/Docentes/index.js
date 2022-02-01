@@ -1,4 +1,11 @@
-module.exports = (data) => {
+module.exports = ({
+  proyectName,
+  startDate,
+  conclusionDate,
+  typeProyect,
+  objectiveProject,
+  statusProject,
+}) => {
   return `
   <!DOCTYPE html>
   <html lang="en">
@@ -50,29 +57,10 @@ module.exports = (data) => {
         crossorigin="anonymous"
       ></script>
   
-      <div class="invoice-box-local">
-        <div>
-          <div id="pageHeader" style="display: flex">
-            <div style="width: 15%" class="d-flex justify-content-end">
-              <img
-                src="https://www.tijuana.tecnm.mx/wp-content/uploads/2015/03/IT-PUERTO-PE%C3%91ASCO.png"
-                alt="ITSPP"
-                style="width: 100%; max-width: 60px"
-              />
-            </div>
-            <div class="pt-2 w-75 text-center text-uppercase">
-              <strong style="font-size: medium"
-                >Registro de Proyecto Institucional</strong
-              >
-              <br />
-              <strong style="font-size: smaller"
-                >Instituto Tecnológico Superior De Puerto Peñasco</strong
-              >
-            </div>
-          </div>
-          <br />
+      <div>
+        <div style="font-size: 12px;">
           <!-- Alumnos -->
-          <div>
+          <div class="mt-2">
             <div class="text-uppercase d-flex">
               <div style="width: 10%"></div>
               <div><strong>Datos de los alumnos participantes</strong></div>
@@ -90,7 +78,7 @@ module.exports = (data) => {
                   </div>
                 </div>
                 <div class="d-flex me-2" style="width: 40%">
-                  <div style="width: 60%"><strong>No. Control:</strong></div>
+                  <div style="width: 63%"><strong>No. Control:</strong></div>
                   <div
                     style="height: 1.2em"
                     class="w-100 text-center px-2 border border-top-0 border-end-0 border-start-0 border-dark"
@@ -110,7 +98,7 @@ module.exports = (data) => {
                   </div>
                 </div>
                 <div class="d-flex me-2" style="width: 40%">
-                  <div style="width: 60%"><strong>No. Control:</strong></div>
+                  <div style="width: 63%"><strong>No. Control:</strong></div>
                   <div
                     style="height: 1.2em"
                     class="w-100 text-center px-2 border border-top-0 border-end-0 border-start-0 border-dark"
@@ -130,7 +118,7 @@ module.exports = (data) => {
                   </div>
                 </div>
                 <div class="d-flex me-2" style="width: 40%">
-                  <div style="width: 60%"><strong>No. Control:</strong></div>
+                  <div style="width: 63%"><strong>No. Control:</strong></div>
                   <div
                     style="height: 1.2em"
                     class="w-100 text-center px-2 border border-top-0 border-end-0 border-start-0 border-dark"
@@ -150,7 +138,7 @@ module.exports = (data) => {
                   </div>
                 </div>
                 <div class="d-flex me-2" style="width: 40%">
-                  <div style="width: 60%"><strong>No. Control:</strong></div>
+                  <div style="width: 63%"><strong>No. Control:</strong></div>
                   <div
                     style="height: 1.2em"
                     class="w-100 text-center px-2 border border-top-0 border-end-0 border-start-0 border-dark"
@@ -176,20 +164,20 @@ module.exports = (data) => {
                     style="height: 1.2em"
                     class="w-100 px-2 border border-top-0 border-end-0 border-start-0 border-dark"
                   >
-                    <span>Gestor de Proyecto Institucionales</span>
+                    <span>${proyectName}</span>
                   </div>
                 </div>
               </div>
               <div class="d-flex mb-2 w-100">
                 <div class="d-flex me-2" style="width: 50%">
                   <div class="me-2" style="width: fit-content">
-                    <strong>Fecha de inicio:</strong>
+                    <strong>Fecha de Inicio:</strong>
                   </div>
                   <div
                     style="height: 1.2em"
                     class="w-50 text-center px-2 border border-top-0 border-end-0 border-start-0 border-dark"
                   >
-                    <span>05/10/2021</span>
+                    <span>${startDate}</span>
                   </div>
                 </div>
                 <div class="d-flex me-2" style="width: 50%">
@@ -200,7 +188,7 @@ module.exports = (data) => {
                     style="height: 1.2em"
                     class="w-50 text-center px-2 border border-top-0 border-end-0 border-start-0 border-dark"
                   >
-                    <span>10/01/2022</span>
+                    <span>${conclusionDate}</span>
                   </div>
                 </div>
               </div>
@@ -213,7 +201,7 @@ module.exports = (data) => {
                     style="height: 1.2em"
                     class="w-75 text-center px-2 border border-top-0 border-end-0 border-start-0 border-dark"
                   >
-                    <span>Paquete Tecnológico</span>
+                    <span>${typeProyect}</span>
                   </div>
                 </div>
                 <div class="d-flex me-2" style="width: 33%">
@@ -224,7 +212,7 @@ module.exports = (data) => {
                     style="height: 1.2em"
                     class="w-75 text-center px-2 border border-top-0 border-end-0 border-start-0 border-dark"
                   >
-                    <span>Titulacion</span>
+                    <span>${objectiveProject}</span>
                   </div>
                 </div>
                 <div class="d-flex me-2" style="width: 33%">
@@ -235,7 +223,7 @@ module.exports = (data) => {
                     style="height: 1.2em"
                     class="w-75 text-center px-2 border border-top-0 border-end-0 border-start-0 border-dark"
                   >
-                    <span>En desarrollo</span>
+                    <span>${statusProject}</span>
                   </div>
                 </div>
               </div>
@@ -351,7 +339,7 @@ module.exports = (data) => {
             <div class="w-100 border border-3 border-dark px-1 py-3">
               <div class="d-flex mb-2 w-100">
                 <div class="d-flex me-2" style="width: 100%">
-                  <div class="me-2" style="width: 26%">
+                  <div class="me-2" style="width: fit-content">
                     <strong>Nombre de la Empresa:</strong>
                   </div>
                   <div

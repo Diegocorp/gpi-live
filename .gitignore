@@ -35,7 +35,7 @@ gpi-server/public/
 gpi-server/.env
 
 #Generated PDF documents
-.pdf
+*.pdf
 
 # Local Netlify folder
 .netlify
