@@ -5,7 +5,73 @@ module.exports = ({
   typeProyect,
   objectiveProject,
   statusProject,
+  enterpriseProject,
+  enterpriseContact,
+  firstNameContact,
+  lastNameContact,
+  studentMember,
+  teacherMember,
 }) => {
+  function printStudents(studentObject) {
+    let html = "";
+    for (var student in studentObject) {
+      html += `
+      <div class="d-flex w-100 mb-2">
+      <div class="d-flex me-2" style="width: 60%">
+        <div class="me-2"><strong>Nombre:</strong></div>
+        <div
+          style="height: 1.2em"
+          class="data-text w-100 px-2 border border-top-0 border-end-0 border-start-0 border-dark"
+        >
+          <span>${studentObject[student][0]}</span>
+        </div>
+      </div>
+      <div class="d-flex me-2" style="width: 40%">
+        <div style="width: 45%"><strong>No. Control:</strong></div>
+        <div
+          style="height: 1.2em"
+          class="data-text w-100 text-center px-2 border border-top-0 border-end-0 border-start-0 border-dark"
+        >
+          <span>${studentObject[student][1]}</span>
+        </div>
+      </div>
+    </div>
+      `;
+    }
+    return html;
+  }
+
+  function printTeachers(teacherObject) {
+    let html = "";
+    for (var teacher in teacherObject) {
+      html += `
+      <div class="d-flex mb-2 w-100">
+        <div class="d-flex me-2" style="width: 60%">
+          <div class="me-2"><strong>Nombre:</strong></div>
+          <div
+          style="height: 1.2em"
+          class="data-text w-100 px-2 border border-top-0 border-end-0 border-start-0 border-dark"
+          >
+            <span>${teacherObject[teacher][0]}</span>
+          </div>
+        </div>
+        <div class="d-flex me-2" style="width: 40%">
+          <div class="me-1" style="width: 55%">
+            <strong>No. Empleado:</strong>
+          </div>
+          <div
+          style="height: 1.2em"
+          class="data-text w-100 text-center px-2 border border-top-0 border-end-0 border-start-0 border-dark"
+          >
+            <span>${teacherObject[teacher][1]}</span>
+          </div>
+        </div>
+      </div>
+      `;
+    }
+    return html;
+  }
+
   return `
   <!DOCTYPE html>
   <html lang="en">
@@ -24,25 +90,11 @@ module.exports = ({
         body {
           background-color: #333 !important;
         }
-        .invoice-box-local {
-          background-color: #fff;
-          max-width: 800px;
-          margin: auto;
-          padding: 30px;
-          border: 1px solid #eee;
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-          font-size: 16px;
-          line-height: 24px;
-          font-family: "Helvetica Neue", "Helvetica";
-          color: #555;
+        .data-text{
+          padding-bottom: 15px;
         }
         @media only screen and (max-width: 600px) {
           .invoice-box-local table tr.top table td {
-            width: 100%;
-            display: block;
-            text-align: center;
-          }
-          .invoice-box-local table tr.information table td {
             width: 100%;
             display: block;
             text-align: center;
@@ -67,86 +119,7 @@ module.exports = ({
             </div>
             <div class="w-100 border border-3 border-dark px-1 py-3">
               <!-- Dynamically load students here -->
-              <div class="d-flex mb-2 w-100">
-                <div class="d-flex me-2" style="width: 60%">
-                  <div class="me-2"><strong>Nombre:</strong></div>
-                  <div
-                    style="height: 1.2em"
-                    class="w-100 px-2 border border-top-0 border-end-0 border-start-0 border-dark"
-                  >
-                    <span>Juan Perez</span>
-                  </div>
-                </div>
-                <div class="d-flex me-2" style="width: 40%">
-                  <div style="width: 63%"><strong>No. Control:</strong></div>
-                  <div
-                    style="height: 1.2em"
-                    class="w-100 text-center px-2 border border-top-0 border-end-0 border-start-0 border-dark"
-                  >
-                    <span>17303116</span>
-                  </div>
-                </div>
-              </div>
-              <div class="d-flex mb-2 w-100">
-                <div class="d-flex me-2" style="width: 60%">
-                  <div class="me-2"><strong>Nombre:</strong></div>
-                  <div
-                    style="height: 1.2em"
-                    class="w-100 px-2 border border-top-0 border-end-0 border-start-0 border-dark"
-                  >
-                    <span>Juan Perez</span>
-                  </div>
-                </div>
-                <div class="d-flex me-2" style="width: 40%">
-                  <div style="width: 63%"><strong>No. Control:</strong></div>
-                  <div
-                    style="height: 1.2em"
-                    class="w-100 text-center px-2 border border-top-0 border-end-0 border-start-0 border-dark"
-                  >
-                    <span>17303116</span>
-                  </div>
-                </div>
-              </div>
-              <div class="d-flex mb-2 w-100">
-                <div class="d-flex me-2" style="width: 60%">
-                  <div class="me-2"><strong>Nombre:</strong></div>
-                  <div
-                    style="height: 1.2em"
-                    class="w-100 px-2 border border-top-0 border-end-0 border-start-0 border-dark"
-                  >
-                    <span>Juan Perez</span>
-                  </div>
-                </div>
-                <div class="d-flex me-2" style="width: 40%">
-                  <div style="width: 63%"><strong>No. Control:</strong></div>
-                  <div
-                    style="height: 1.2em"
-                    class="w-100 text-center px-2 border border-top-0 border-end-0 border-start-0 border-dark"
-                  >
-                    <span>17303116</span>
-                  </div>
-                </div>
-              </div>
-              <div class="d-flex mb-2 w-100">
-                <div class="d-flex me-2" style="width: 60%">
-                  <div class="me-2"><strong>Nombre:</strong></div>
-                  <div
-                    style="height: 1.2em"
-                    class="w-100 px-2 border border-top-0 border-end-0 border-start-0 border-dark"
-                  >
-                    <span>Juan Perez</span>
-                  </div>
-                </div>
-                <div class="d-flex me-2" style="width: 40%">
-                  <div style="width: 63%"><strong>No. Control:</strong></div>
-                  <div
-                    style="height: 1.2em"
-                    class="w-100 text-center px-2 border border-top-0 border-end-0 border-start-0 border-dark"
-                  >
-                    <span>17303116</span>
-                  </div>
-                </div>
-              </div>
+              ${printStudents(studentMember)}  
             </div>
           </div>
           <br />
@@ -162,7 +135,7 @@ module.exports = ({
                   <div class="me-2"><strong>Nombre:</strong></div>
                   <div
                     style="height: 1.2em"
-                    class="w-100 px-2 border border-top-0 border-end-0 border-start-0 border-dark"
+                    class="data-text w-100 px-2 border border-top-0 border-end-0 border-start-0 border-dark"
                   >
                     <span>${proyectName}</span>
                   </div>
@@ -175,7 +148,7 @@ module.exports = ({
                   </div>
                   <div
                     style="height: 1.2em"
-                    class="w-50 text-center px-2 border border-top-0 border-end-0 border-start-0 border-dark"
+                    class="data-text w-50 text-center px-2 border border-top-0 border-end-0 border-start-0 border-dark"
                   >
                     <span>${startDate}</span>
                   </div>
@@ -186,7 +159,7 @@ module.exports = ({
                   </div>
                   <div
                     style="height: 1.2em"
-                    class="w-50 text-center px-2 border border-top-0 border-end-0 border-start-0 border-dark"
+                    class="data-text w-50 text-center px-2 border border-top-0 border-end-0 border-start-0 border-dark"
                   >
                     <span>${conclusionDate}</span>
                   </div>
@@ -199,7 +172,7 @@ module.exports = ({
                   </div>
                   <div
                     style="height: 1.2em"
-                    class="w-75 text-center px-2 border border-top-0 border-end-0 border-start-0 border-dark"
+                    class="data-text w-75 text-center px-2 border border-top-0 border-end-0 border-start-0 border-dark"
                   >
                     <span>${typeProyect}</span>
                   </div>
@@ -210,7 +183,7 @@ module.exports = ({
                   </div>
                   <div
                     style="height: 1.2em"
-                    class="w-75 text-center px-2 border border-top-0 border-end-0 border-start-0 border-dark"
+                    class="data-text w-75 text-center px-2 border border-top-0 border-end-0 border-start-0 border-dark"
                   >
                     <span>${objectiveProject}</span>
                   </div>
@@ -221,7 +194,7 @@ module.exports = ({
                   </div>
                   <div
                     style="height: 1.2em"
-                    class="w-75 text-center px-2 border border-top-0 border-end-0 border-start-0 border-dark"
+                    class="data-text w-75 text-center px-2 border border-top-0 border-end-0 border-start-0 border-dark"
                   >
                     <span>${statusProject}</span>
                   </div>
@@ -237,94 +210,8 @@ module.exports = ({
               <div><strong>Docentes</strong></div>
             </div>
             <div class="w-100 border border-3 border-dark px-1 py-3">
-              <div class="d-flex mb-2 w-100">
-                <div class="d-flex me-2" style="width: 60%">
-                  <div class="me-2"><strong>Nombre:</strong></div>
-                  <div
-                    style="height: 1.2em"
-                    class="w-100 px-2 border border-top-0 border-end-0 border-start-0 border-dark"
-                  >
-                    <span>Juan Perez</span>
-                  </div>
-                </div>
-                <div class="d-flex me-2" style="width: 40%">
-                  <div class="me-1" style="width: 75%">
-                    <strong>No. Empleado:</strong>
-                  </div>
-                  <div
-                    style="height: 1.2em"
-                    class="w-100 text-center px-2 border border-top-0 border-end-0 border-start-0 border-dark"
-                  >
-                    <span>17303116</span>
-                  </div>
-                </div>
-              </div>
-              <div class="d-flex mb-2 w-100">
-                <div class="d-flex me-2" style="width: 60%">
-                  <div class="me-2"><strong>Nombre:</strong></div>
-                  <div
-                    style="height: 1.2em"
-                    class="w-100 px-2 border border-top-0 border-end-0 border-start-0 border-dark"
-                  >
-                    <span>Juan Perez</span>
-                  </div>
-                </div>
-                <div class="d-flex me-2" style="width: 40%">
-                  <div class="me-1" style="width: 75%">
-                    <strong>No. Empleado:</strong>
-                  </div>
-                  <div
-                    style="height: 1.2em"
-                    class="w-100 text-center px-2 border border-top-0 border-end-0 border-start-0 border-dark"
-                  >
-                    <span>17303116</span>
-                  </div>
-                </div>
-              </div>
-              <div class="d-flex mb-2 w-100">
-                <div class="d-flex me-2" style="width: 60%">
-                  <div class="me-2"><strong>Nombre:</strong></div>
-                  <div
-                    style="height: 1.2em"
-                    class="w-100 px-2 border border-top-0 border-end-0 border-start-0 border-dark"
-                  >
-                    <span>Juan Perez</span>
-                  </div>
-                </div>
-                <div class="d-flex me-2" style="width: 40%">
-                  <div class="me-1" style="width: 75%">
-                    <strong>No. Empleado:</strong>
-                  </div>
-                  <div
-                    style="height: 1.2em"
-                    class="w-100 text-center px-2 border border-top-0 border-end-0 border-start-0 border-dark"
-                  >
-                    <span>17303116</span>
-                  </div>
-                </div>
-              </div>
-              <div class="d-flex mb-2 w-100">
-                <div class="d-flex me-2" style="width: 60%">
-                  <div class="me-2"><strong>Nombre:</strong></div>
-                  <div
-                    style="height: 1.2em"
-                    class="w-100 px-2 border border-top-0 border-end-0 border-start-0 border-dark"
-                  >
-                    <span>Juan Perez</span>
-                  </div>
-                </div>
-                <div class="d-flex me-2" style="width: 40%">
-                  <div class="me-1" style="width: 75%">
-                    <strong>No. Empleado:</strong>
-                  </div>
-                  <div
-                    style="height: 1.2em"
-                    class="w-100 text-center px-2 border border-top-0 border-end-0 border-start-0 border-dark"
-                  >
-                    <span>17303116</span>
-                  </div>
-                </div>
-              </div>
+            <!-- Dynamically load students here -->
+            ${printTeachers(teacherMember)}  
             </div>
           </div>
           <br />
@@ -344,9 +231,9 @@ module.exports = ({
                   </div>
                   <div
                     style="height: 1.2em; width: 74%"
-                    class="px-2 border border-top-0 border-end-0 border-start-0 border-dark"
+                    class="data-text px-2 border border-top-0 border-end-0 border-start-0 border-dark"
                   >
-                    <span>Taqueria "Los Cuates"</span>
+                    <span>${enterpriseProject}</span>
                   </div>
                 </div>
               </div>
@@ -357,9 +244,9 @@ module.exports = ({
                   </div>
                   <div
                     style="height: 1.2em"
-                    class="w-75 px-2 border border-top-0 border-end-0 border-start-0 border-dark"
+                    class="data-text w-75 px-2 border border-top-0 border-end-0 border-start-0 border-dark"
                   >
-                    <span>Funalito Juarez</span>
+                    <span>${firstNameContact} ${lastNameContact}</span>
                   </div>
                 </div>
               </div>
@@ -370,9 +257,9 @@ module.exports = ({
                   </div>
                   <div
                     style="height: 1.2em"
-                    class="w-100 px-2 border border-top-0 border-end-0 border-start-0 border-dark"
+                    class="data-text w-100 px-2 border border-top-0 border-end-0 border-start-0 border-dark"
                   >
-                    <span>someEmail@test.com</span>
+                    <span>${enterpriseContact}</span>
                   </div>
                 </div>
               </div>
