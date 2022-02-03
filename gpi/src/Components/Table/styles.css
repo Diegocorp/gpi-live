@@ -35,6 +35,7 @@ tbody {
   width: 50px;
   max-width: 50px;
   overflow: "hidden";
+  padding: 0px;
   transition: width 1s, border-radius 0.5s, min-width 0.5s, max-width 0.5s;
   -webkit-transition: width 1s, border-radius 0.5s, min-width 0.5s,
     max-width 0.5s;
@@ -55,7 +56,7 @@ tbody {
 .filterBtn_innerSpace {
   display: flex;
   text-align: center;
-  min-width: 250px;
+  /* min-width: 250px; */
   height: 20px;
   margin: 0px;
   position: relative;
@@ -64,7 +65,7 @@ tbody {
 
 .filterBtn_innerSpace.cerrar {
   margin: 0px;
-  right: 220px;
+  /* right: 220px; */
   transition: min-width 1s;
   margin-top: 3px;
 }
@@ -85,8 +86,8 @@ tbody {
 .filterBtn_innerSpace.cerrar .line1 {
   display: block;
   transform: rotate(45deg);
-  top: 50%;
-  right: 3px;
+  top: 70%;
+  right: 8px;
   opacity: 1;
 }
 
@@ -94,8 +95,8 @@ tbody {
   opacity: 1;
   display: block;
   transform: rotate(-45deg);
-  top: 50%;
-  right: 3px;
+  top: 70%;
+  right: 8px;
 }
 
 .filterBtn_innerSpace.cerrar .text-slide {
