@@ -5,6 +5,7 @@ import { store } from "react-notifications-component";
 import { UserContext } from "../../Utils/UserContext";
 import { GuestContext } from "../../Utils/GuestContext";
 import { ProjectContext } from "../../Utils/ProjectContext";
+import Spinner from "react-bootstrap/Spinner";
 import "./styles.css";
 import apis from "../../API";
 import AddStudent from "../../Components/AddStudent";
@@ -39,6 +40,7 @@ const CreateProject = ({ title, edit }) => {
   const [documentUploads, setDocumentUploads] = useState({});
   const [addStudent, setAddStudent] = useState([]);
   const [addTeacher, setAddTeacher] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     let pageItems = document.getElementById("projectID");
@@ -127,9 +129,20 @@ const CreateProject = ({ title, edit }) => {
     setAddTeacher(addTeacher.filter((item) => item !== key));
   }
 
-  const downloadPDF = async () => {
-    const payload = { dataObject };
-    apis.buildDocentePDF(payload);
+  const downloadPDF = () => {
+    setLoading(true);
+    const myPromise = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve("foo");
+      }, 5000);
+    });
+    myPromise
+      .then((result) => {
+        apis.buildDocentePDF({ dataObject });
+      })
+      .then(() => {
+        setLoading(() => false);
+      });
   };
 
   const onSubmit = async (event) => {
@@ -705,7 +718,11 @@ const CreateProject = ({ title, edit }) => {
                   type="button"
                   onClick={() => downloadPDF()}
                 >
-                  Descargar documento
+                  {loading ? (
+                    <Spinner animation="border" role="status" />
+                  ) : (
+                    `Descargar documento`
+                  )}
                 </button>
               ) : (
                 <span className="d-none" />
@@ -744,7 +761,11 @@ const CreateProject = ({ title, edit }) => {
                   type="button"
                   onClick={() => downloadPDF()}
                 >
-                  Descargar documento
+                  {loading ? (
+                    <Spinner animation="border" role="status" />
+                  ) : (
+                    `Descargar documento`
+                  )}
                 </button>
               ) : (
                 <span className="d-none" />

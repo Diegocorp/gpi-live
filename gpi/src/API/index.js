@@ -215,6 +215,12 @@ export const buildDocentePDF = (payload) => {
     .then((res) => {
       const pdfBlob = new Blob([res.data], { type: "application/pdf" });
       saveAs(pdfBlob, "document.pdf");
+    })
+    .then((response) => {
+      return response.status;
+    })
+    .catch((error) => {
+      console.log(error);
     });
 };
 
